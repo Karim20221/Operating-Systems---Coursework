@@ -1,20 +1,18 @@
 # Week 4 – Initial System Configuration & Security Implementation
 
-## Overview
+## SSH Key-Based Authentication
+SSH keys were generated on the workstation and copied to the server. Password authentication and root login were disabled in `sshd_config`.
 
-This week focused on deploying the Ubuntu Server system configured in Week 1 and implementing foundational security controls. All administrative tasks were carried out remotely via SSH from a separate Linux workstation, reinforcing professional command-line system administration practices.
+## Firewall Configuration
+UFW was enabled with SSH access allowed only from the workstation IP. All other inbound traffic was denied.
 
-The aim of this phase was to establish secure remote access, restrict network exposure, and enforce controlled user privilege management on the server.
+## User Management
+A non-root administrative user was created and granted sudo privileges.
 
----
+## Remote Administration
+All configuration tasks were performed remotely via SSH.
 
-## 1. SSH Configuration with Key-Based Authentication
-
-### Objective
-The objective of this step was to secure remote access to the server by replacing password-based authentication with SSH key-based authentication.
-
-### Implementation
-An SSH key pair was generated on the workstation system using:
-
-```bash
-ssh-keygen -t ed25519 -C "admin@workstation"
+## Evidence
+![SSH login](images/week4/ssh-login.png)
+![sshd config](images/week4/sshd-config.png)
+![UFW rules](images/week4/ufw-status.png)
