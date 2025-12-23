@@ -1,86 +1,144 @@
-Week 2 - Security Planning and Testing Methodology
+# Week 2 – Security Planning and Testing Methodology
 
-1. Performance testing plan
+## 1. Performance Testing Plan
 
-The objective of performance testing plan was to check the performance and behaviour of a linux server opeating system that we previously configured in week 1. This system runs a ubuntu server and was remotely adminitered via SSH from a linux workstation.
-The testing in this part mainly focussed on cpu usage, memory usage, disk and network activity under different workloads while making sure security controls are active and in place.
+The objective of this performance testing plan was to evaluate the performance and behaviour of a Linux server operating system configured in Week 1. The system runs Ubuntu Server and is administered remotely via SSH from a Linux workstation.
 
-Testing Enviroment
+The testing in this phase mainly focused on CPU usage, memory usage, disk activity, and network performance under different workloads, while ensuring that security controls remained active and enforced throughout testing.
 
-The configureation was based on week 1
+---
 
-- Ubuntu Server
-- Linux
-- Memoory was 8 gb
-- Storage 25 gb virtual disk
-- Virtualbox to run vms
-- Admin method was SSH
+## Testing Environment
 
-Network Context
+The system configuration used for testing was based on the setup completed in Week 1:
 
-The server was operated by virtualbox was using a virtual network with two assigned ip addresses so we could have the workstation remotely connect with the ubuntu server and vice versa, ip addr was used to ensure the system can be securely accessed and monitored remotely.
+- Operating System: Ubuntu Server (headless)
+- Kernel: Linux
+- Memory: 8 GB RAM
+- Storage: 25 GB virtual disk
+- Virtualisation Platform: VirtualBox
+- Administration Method: SSH (command-line only)
 
-Performance metrics
+This environment reflects a realistic server setup and enforces professional remote administration practices.
 
-The following were activity monitored during the performance evaulation
+---
 
-- CPU utilistation
+## Network Context
+
+The server operates within a VirtualBox virtual network and uses two network interfaces. This allows the workstation to connect remotely to the Ubuntu Server while keeping the environment isolated.
+
+The `ip addr` command was used to verify network interfaces and IP addresses, ensuring that the system could be accessed and monitored securely via SSH.
+
+---
+
+## Performance Metrics
+
+The following metrics were monitored during performance evaluation:
+
+- CPU utilisation
 - Memory usage
 - Disk usage and I/O activity
-- Network
+- Network throughput and latency
 - System responsiveness under heavy load
 
-Testing Methodolgy
+These metrics provide a clear view of how the operating system behaves under different workload conditions.
 
-Baseline measurement, used to capture the default system metrics immedaitely after booting the workstation.
-Workload testing, running multiple applications that each affect a different part of the system such as CPU, memory, disk and network.
-Bottleneck identification, identifying whether there was enough data to identify resource constraints.
-Optimisation testing, applying configuration changes and meassuring performance improvements
+---
 
-2. Security Configuration Checklist
+## Testing Methodology
 
-The following checklist define baseline that will be implmented on the ubunti server that we configured in week 1
+Performance testing was conducted using a structured approach:
 
-SSH Hardening
-- Used to enforce ssh only remote admin
-- Used to disable password based authentication
-- Used to enable key based authentication
-- Used to restrict ssh access to auth users
-- Used to disable root login via ssh
+- **Baseline Measurement**  
+  Capturing default system metrics immediately after boot to establish a reference point.
 
-Firewall configuation
-- Enable firewall using ufw command
-- Allow ssh access from the workstation only
-- Deny all other traffic thats inbound by default
+- **Workload Testing**  
+  Running multiple applications that stress different system resources, including CPU, memory, disk, and network.
 
-MAC or Mandotory Access Control
-- Enable apparmour
-- verify enforcement mode is activated
-- security profiles
+- **Bottleneck Identification**  
+  Analysing collected data to identify resource constraints or inefficiencies.
 
-Automatic Security Updates
+- **Optimisation Testing**  
+  Applying configuration changes and measuring performance improvements using comparative results.
+
+---
+
+## 2. Security Configuration Checklist
+
+The following checklist defines the security baseline that will be implemented on the Ubuntu Server configured in Week 1.
+
+### SSH Hardening
+- Enforce SSH-only remote administration
+- Disable password-based SSH authentication
+- Enable SSH key-based authentication
+- Restrict SSH access to authorised users
+- Disable direct root login via SSH
+
+### Firewall Configuration
+- Enable the firewall using the `ufw` command
+- Allow SSH access only from the authorised workstation
+- Deny all other inbound traffic by default
+
+### Mandatory Access Control (MAC)
+- Enable AppArmor
+- Verify that enforcement mode is active
+- Review applied security profiles
+
+### Automatic Security Updates
 - Enable unattended security updates
-- Vreify update schedule
+- Verify update scheduling and configuration
 
-User and Privilege Management
-- Create a non root admin user
-- Apply low priv settings using sudo
-- Audit user permissions
+### User and Privilege Management
+- Create a non-root administrative user
+- Apply least-privilege principles using `sudo`
+- Audit user permissions regularly
 
-Network Security
-- Operate the server using an isolated virtualbox network
-- verify only required network servers are activated
-- perform regular service and port audits
+### Network Security
+- Operate the server within an isolated VirtualBox network
+- Verify that only required network services are active
+- Perform regular service and port audits
 
-3. Threat Model
+---
 
-Threat 1 - Brute Force SSH Attacks
+## 3. Threat Model
 
-Exposed SSH services may be targetted by attacks attempting multiple login attempts
+### Threat 1 – Brute-Force SSH Attacks
 
-To fix this,
+Exposed SSH services may be targeted by attackers attempting repeated login attempts.
 
-- Disable Password authentication
-- Enforce ssh key based authentication
-- Restrict ssh access to one workstation only
-- 
+**Mitigation:**
+- Disable password-based authentication
+- Enforce SSH key-based authentication
+- Restrict SSH access to a single authorised workstation
+- Implement intrusion prevention mechanisms such as fail2ban
+
+---
+
+### Threat 2 – Unauthorised Network Access
+
+Open ports or unnecessary services could expose the server to network-based attacks.
+
+**Mitigation:**
+- Apply a default-deny firewall policy
+- Allow only essential services (SSH)
+- Regularly audit open ports and active services
+
+---
+
+### Threat 3 – Privilege Escalation
+
+Improper privilege separation could allow users or attackers to gain elevated access.
+
+**Mitigation:**
+- Disable root SSH login
+- Enforce controlled `sudo` access
+- Apply mandatory access control mechanisms such as AppArmor
+- Review user permissions regularly
+
+---
+
+## Reflection
+
+Week 2 focused on planning security controls and performance evaluation strategies before implementation. By defining a clear security baseline and structured testing methodology, later configuration decisions can be measured objectively.
+
+This approach ensures that performance results and security trade-offs are intentional, measurable, and aligned with professional system administration practices.
