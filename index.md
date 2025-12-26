@@ -19,4 +19,4 @@ The coursework follows a structured seven-week approach covering system planning
 - [Week 7 – Security Audit and System Evaluation](week7.md)
 
 ## AI Usage Declaration
-AI tools were used to assist with structuring and refining written explanations. All system configuration, commands, testing, and screenshots were produced and understood by the author.
+AI tools were used to assist with structuring and refining written explanations. All system configuration, commands, testing, and screenshots were produced and understood by me.
