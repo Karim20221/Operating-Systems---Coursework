@@ -105,4 +105,4 @@ This is reduced by using key-based authentication and firewall restrictions, ins
 This is mitigated with a default-deny firewall and regular service checks.
 
 ### Privilege escalation risks
-This is reduced by disabling root login and enforcing access-control policies.
+This is reduced by disabling root login and enforcing access control policies.
