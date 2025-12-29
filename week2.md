@@ -1,67 +1,108 @@
 # Week 2 – Security Planning and Testing Methodology
 
-## Performance Testing Plan
-The objective was to evaluate the performance and behaviour of the Ubuntu Server system configured in Week 1 while maintaining active security controls.
+## Overview
 
-Testing focused on CPU, memory, disk, and network performance under varying workloads using remote monitoring via SSH.
+In Week 2 I focused on planning how the server would be tested and secured before carrying out any major performance or stress testing. The goal was to make sure the system was configured safely while still being able to monitor and evaluate its behaviour under different workloads.
+
+Most of this planning was based around understanding how the server might be used in a real environment and what security risks it could face, especially since all administration is done remotely through SSH.
+
+## Performance Testing Plan
+
+The performance testing was designed to look at how the server behaves under different levels of load, while still keeping security controls enabled in the background.
+
+The main areas I planned to test were:
+
+- CPU performance under stress
+- Memory usage and behaviour under pressure
+- Disk usage and I/O activity
+- Network performance and throughput
+- General system responsiveness
+
+All of this was monitored remotely over SSH so the system stayed headless and realistic to a server environment.
 
 ## Testing Environment
-- Ubuntu Server (headless)
+
+The testing environment from Week 1 was kept the same to ensure consistency:
+
+- Ubuntu Server (headless, CLI-only)
 - Linux kernel
 - 8 GB RAM
 - 25 GB virtual disk
-- VirtualBox virtualisation
-- SSH-only administration
+- Running inside VirtualBox
+- Managed fully through SSH
+
+This setup keeps a clear separation between the workstation and server, which also reduces unnecessary risk.
 
 ## Network Context
-The server operates within a VirtualBox virtual network and is accessed remotely by the workstation. Network configuration and IP addressing were verified using `ip addr`.
+
+The server runs inside a VirtualBox virtual network and is accessed only by the workstation system.
+
+The network configuration and IP addressing were checked using `ip addr` to make sure the connection was stable and predictable before running any tests.
+
+Keeping the server inside a virtual network also reduces exposure, since it is not directly reachable from the public internet.
 
 ## Performance Metrics
+
+The plan was to monitor the following values during testing:
+
 - CPU utilisation
-- Memory usage
-- Disk usage and I/O
-- Network throughput
-- System responsiveness
+- Memory usage and swap behaviour
+- Disk usage and I/O activity
+- Network throughput and stability
+- Overall system responsiveness
+
+These metrics help build a clearer picture of how the operating system reacts when workloads increase.
 
 ## Testing Methodology
-- Baseline measurement after boot
-- Workload testing
-- Bottleneck identification
-- Optimisation testing
+
+To keep the testing structured, I followed a simple step-by-step approach:
+
+1. Record a baseline after boot
+2. Apply different workloads
+3. Identify bottlenecks or weak areas
+4. Apply optimisations and re-test
+
+This makes it easier to compare behaviour before and after changes.
 
 ## Security Configuration Checklist
+
+Before running tests, I planned out the main security controls that needed to be in place.
+
 ### SSH Hardening
-- Disable password authentication
-- Enable key-based authentication
-- Disable root login
-- Restrict SSH users
+- Key-based authentication instead of passwords
+- Disable password login
+- Disable root login over SSH
+- Restrict SSH access to specific users
 
 ### Firewall Configuration
 - Enable UFW
-- Allow SSH from workstation only
-- Deny all other inbound traffic
+- Allow SSH only from the workstation IP
+- Deny other inbound traffic
 
 ### Mandatory Access Control
 - Enable AppArmor
-- Verify enforcement mode
+- Check that it is running in enforced mode
 
-### Automatic Updates
-- Enable unattended security updates
+### Automatic Security Updates
+- Enable unattended security updates to reduce risk
 
 ### User Management
-- Non-root admin user
-- Least privilege via sudo
+- Use a non-root admin account
+- Apply least-privilege through sudo
 
 ### Network Security
-- Isolated VirtualBox network
-- Regular service audits
+- Keep server isolated within the virtual network
+- Review running services to reduce attack surface
 
 ## Threat Model
+
+The threat model was kept simple and focused on realistic risks for a small remote server.
+
 ### Brute-force SSH attacks
-Mitigated by key-based authentication, firewall restrictions, and intrusion prevention.
+This is reduced by using key-based authentication and firewall restrictions, instead of allowing password logins from anywhere.
 
 ### Unauthorised network access
-Mitigated through firewall rules and service auditing.
+This is mitigated with a default-deny firewall and regular service checks.
 
-### Privilege escalation
-Mitigated by disabling root login and enforcing MAC policies.
+### Privilege escalation risks
+This is reduced by disabling root login and enforcing access-control policies.
