@@ -1,52 +1,55 @@
-# Week 5 – Advanced Security and Monitoring Infrastructure
+### Week 5 – Advanced Security and Monitoring Infrastructure
 
 ## Overview
-This week focused on strengthening the system’s security posture and introducing monitoring mechanisms to support ongoing administration. The aim was to detect unauthorised activity, enforce security policies, and improve visibility of system status while maintaining SSH-only administration.
 
----
+In Week 5 the focus was on strengthening the security of the server and introducing monitoring features that help with ongoing system administration. The idea was to make the system more resilient against attacks while also improving visibility over what is happening on the server.
 
-## Mandatory Access Control
+All work continued to be carried out remotely over SSH, keeping the headless server approach consistent throughout the project.
 
-AppArmor was enabled to provide mandatory access control at the operating system level. This restricts what applications are allowed to do, even if they are compromised.
+The main areas in this week were mandatory access control, intrusion prevention, verification of security controls, and the creation of a monitoring script.
 
-Enforcement status and loaded profiles were verified to ensure AppArmor was active and protecting system processes.
+# Mandatory Access Control (AppArmor)
 
----
+AppArmor was enabled to provide mandatory access control at the operating system level. This adds another layer of security by restricting what applications are able to do, even if they are exploited or behave unexpectedly.
 
-## Intrusion Detection – fail2ban
+The enforcement status and loaded AppArmor profiles were checked to confirm that it was active and protecting system processes as intended.
 
-fail2ban was installed and configured to protect the SSH service from brute-force login attempts. The service monitors authentication logs and automatically blocks IP addresses that exhibit repeated failed login attempts.
+This helps reduce the potential impact of compromised software and limits the actions that applications are able to perform on the system.
 
-This significantly reduces the risk of automated SSH attacks while requiring minimal system overhead.
+# Intrusion Detection and Prevention (fail2ban)
 
----
+fail2ban was installed and configured in order to protect the SSH service from repeated failed login attempts and automated brute force attacks.
 
-## Security Baseline Verification
+The service works by monitoring authentication logs and automatically blocking IP addresses that generate suspicious login behaviour. This improves security while still allowing legitimate access to the server.
 
-Security configuration was verified by checking:
+Service status and configuration were verified to ensure that fail2ban was running correctly and actively monitoring SSH activity.
+
+# Security Baseline Verification
+
+As part of this week, previously configured security settings were re-checked to make sure they were still active and functioning as expected.
+
+This included verifying:
+
 - SSH service status
 - Firewall configuration
 - fail2ban service state
-- Overall server status
+- General system status
 
-This ensures that previously implemented security controls remain active and correctly configured.
+This step helps confirm that earlier security work remains effective and has not been changed or reverted during later configuration tasks.
 
----
+# Monitoring Script
 
-## Monitoring Script
+A monitoring script called monitor-server.sh was created to provide a quick way to check important system information.
 
-A monitoring script (`monitor-server.sh`) was created and made executable. The script connects to the server via SSH and collects key system metrics including:
+The script gathers and displays key metrics such as:
+
 - Hostname and uptime
 - CPU load
 - Memory usage
 - Disk usage
-- Active users
+- Currently logged-in users
 
-This provides a quick overview of system health and supports proactive administration.
-
-The script was tested and permissions were set using `chmod`.
-
----
+The script was made executable using chmod and tested to ensure it ran correctly. This makes it easier to get an overview of system health during administration work.
 
 ## Evidence
 
