@@ -1,42 +1,47 @@
-# Week 7 – Security Audit and System Evaluation
+### Week 7 – Security Audit and System Evaluation
 
 ## Overview
-This week focused on evaluating the overall security posture of the Ubuntu Server after implementing security controls in previous weeks. The objective was to verify that the system configuration aligns with best practices and to identify any remaining risks.
 
----
+In Week 7 the focus was on reviewing and evaluating the overall security posture of the Ubuntu Server after all of the configuration and security work completed in the previous weeks.
 
-## Lynis Security Audit
+The aim of this week was to verify that the security controls were still in place, check how well the system aligns with best-practice server security, and identify any remaining risks that may need ongoing monitoring rather than immediate changes.
 
-A Lynis security audit was conducted to assess the server’s configuration, security controls, and potential vulnerabilities. Lynis provides automated checks covering system hardening, authentication, network configuration, and service exposure.
+# Lynis Security Audit
 
-The audit results were reviewed to identify warnings and suggestions that could be addressed through further configuration or ongoing maintenance.
+A security audit was carried out using Lynis to analyse the server configuration and evaluate the strength of the applied security controls.
 
----
+Lynis runs a large number of automated checks that cover areas such as authentication settings, network configuration, file permissions, system hardening and exposed services. This makes it useful for highlighting potential weaknesses or configuration issues that may not be obvious during normal use.
 
-## Security Evaluation
+The audit results were reviewed and the warnings and suggestions provided by Lynis were treated as guidance for future improvement and maintenance of the system, rather than as critical failures.
 
-The audit confirmed that key security controls were in place, including:
-- Hardened SSH configuration
-- Restricted network access
-- Enforced security policies
-- Minimal exposed services
+# Security Evaluation
 
-Any remaining risks primarily relate to zero-day vulnerabilities and future misconfiguration rather than immediate weaknesses.
+From the audit review, it was confirmed that major security controls remained active and correctly configured. These included:
 
----
+# Hardened SSH configuration
 
-## Risk Assessment
+Restricted and controlled network access
 
-Residual risks include:
-- Unknown vulnerabilities in system packages
+Enforced access control and security policies
+
+A minimal set of exposed and running services
+
+This indicates that the system is configured in a secure and intentional way, rather than being left in a default or open state.
+
+Most of the remaining risks identified were not immediate vulnerabilities, but areas that require continued awareness over time.
+
+# Risk Assessment
+
+The main residual risks relate to:
+
+- Possible unknown or future software vulnerabilities
 - Human error during future configuration changes
+- These risks are mitigated through:
+- Regular system updates and patching
+- Periodic security audits and reviews
+- Monitoring system behaviour and configuration changes
 
-These risks are mitigated through:
-- Regular system updates
-- Periodic security audits
-- Ongoing monitoring and review of system settings
-
----
+This approach allows the system to remain secure over time, even as software and workloads evolve.
 
 ## Evidence
 
