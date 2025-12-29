@@ -7,7 +7,7 @@
 ## Overview
 This journal documents the configuration, security hardening, monitoring, and performance evaluation of a headless Linux server administered remotely via SSH from a workstation system.
 
-The coursework follows a structured seven-week approach covering system planning, security design, implementation, performance analysis, and security auditing.
+The coursework follows a structured seven week approach covering system planning, security design, implementation, performance analysis, and security auditing.
 
 ## Weekly Journal
 - [Week 1 – System Planning and Setup](week1.md)
