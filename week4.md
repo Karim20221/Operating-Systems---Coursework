@@ -6,7 +6,7 @@ In Week 4 I focused on configuring the server for secure remote access and impro
 
 The main goals were to enable key-based SSH authentication, restrict who can access the server, configure firewall rules, and introduce a safer user management approach.
 
-SSH Key-Based Authentication
+# SSH Key-Based Authentication
 
 SSH keys were generated on the workstation and copied to the server so that logging in could be done using key-based authentication instead of passwords.
 
@@ -22,7 +22,7 @@ UFW was enabled and a rule was added to allow SSH traffic only from the workstat
 
 # User Management
 
-A new non-root administrative user was created so that system administration does not have to be carried out using the root account.
+A new non root administrative user was created so that system administration does not have to be carried out using the root account.
 
 The new user was added to the sudo group so that administrative commands can still be executed when needed, but in a safer and more controlled way that follows the principle of least privilege.
 
