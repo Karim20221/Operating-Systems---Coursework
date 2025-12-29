@@ -26,6 +26,5 @@ All applications were installed remotely over SSH to remain consistent with the 
 
 The tools were installed using the package manager with the following commands:
 
-```bash
 sudo apt update
 sudo apt install stress-ng fio iperf3 nginx sysbench -y
